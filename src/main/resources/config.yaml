@@ -1,11 +1,8 @@
 #browser options: chrome , firefox
-#testdata options: test1, test2, test3
+#testdata options: test1, test2, test3, default
 
 testedBrowser: chrome
-testedDataSet: test3
-
-#defaultBrowser: firefox
-#defaultEnvironment: test1
+testedDataSet: test1
 
 testData:
   test1:
@@ -40,5 +37,16 @@ testData:
     additional: 1234 1234
     message: Form send with success
     filepath: src/main/resources/file.txt
+
+  default:
+      envName: default
+      appUrl: https://seleniumui.moderntester.pl/form.php
+      firstName: Jason
+      lastName: Newsted
+      email: bass@rocks.com
+      age: 39
+      additional: 1234 1234
+      message: Form send with success
+      filepath: src/main/resources/file.txt
 
 ---

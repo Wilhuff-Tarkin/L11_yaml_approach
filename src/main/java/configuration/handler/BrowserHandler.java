@@ -20,9 +20,9 @@ public class BrowserHandler {
         this.appUrl = appUrl;
     }
 
-    public WebDriver getDriver(String defaultBrowser) {
+    public WebDriver getDriver(String requiredBrowser) {
         WebDriver driver;
-        switch (defaultBrowser) {
+        switch (requiredBrowser) {
             case "chrome":
                 ChromeOptions optionsChrome = new ChromeOptions();
                 WebDriverManager.chromedriver().setup();
@@ -43,7 +43,7 @@ public class BrowserHandler {
                 driver = new InternetExplorerDriver(defaultOptions);
                 driver.get(appUrl);
         }
-        log.info("Driver started. Browser: " + defaultBrowser);
+        log.info("Driver started. Browser: " + requiredBrowser);
         return driver;
     }
 }

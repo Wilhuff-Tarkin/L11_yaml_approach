@@ -17,7 +17,7 @@ public class YamlModel {
     @Getter
     @Setter
     @JsonProperty
-    private String testedDataSet;
+    private String testedDataSet = "default";
 
     @Setter
     @JsonProperty
