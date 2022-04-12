@@ -1,17 +1,20 @@
 #browser options: chrome , firefox
-#testdata options: test1, test2
+#testdata options: test1, test2, test3
 
-defaultBrowser: chrome
-defaultEnvironment: test2
+testedBrowser: chrome
+testedDataSet: test3
+
+#defaultBrowser: firefox
+#defaultEnvironment: test1
 
 testData:
   test1:
-    envName: test2
+    envName: test1
     appUrl: https://seleniumui.moderntester.pl/form.php
-    firstName: Lars
-    lastName: Ulrich
-    email: lars@drums.com
-    age: 45
+    firstName: James
+    lastName: Hetfield
+    email: iron@fist.com
+    age: 47
     additional: 1234 1234
     message: Form send with success
     filepath: src/main/resources/file.txt
@@ -22,7 +25,18 @@ testData:
     firstName: Lars
     lastName: Ulrich
     email: lars@drums.com
-    age: 45
+    age: 44
+    additional: 1234 1234
+    message: Form send with success
+    filepath: src/main/resources/file.txt
+
+  test3:
+    envName: test3
+    appUrl: https://seleniumui.moderntester.pl/form.php
+    firstName: Kirk
+    lastName: Hammet
+    email: cry@baby.com
+    age: 39
     additional: 1234 1234
     message: Form send with success
     filepath: src/main/resources/file.txt

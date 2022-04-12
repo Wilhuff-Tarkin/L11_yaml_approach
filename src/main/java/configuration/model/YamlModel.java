@@ -1,9 +1,7 @@
 package configuration.model;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import configuration.model.TestDataModel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,12 +12,12 @@ public class YamlModel {
     @Getter
     @Setter
     @JsonProperty
-    private String defaultBrowser;
+    private String testedBrowser;
 
     @Getter
     @Setter
     @JsonProperty
-    private String defaultEnvironment;
+    private String testedDataSet;
 
     @Setter
     @JsonProperty
@@ -29,23 +27,13 @@ public class YamlModel {
     public YamlModel() {
     }
 
-    public YamlModel(String defaultBrowser, String defaultEnvironment, HashMap<String, TestDataModel> testData) {
-        this.defaultBrowser = defaultBrowser;
-        this.defaultEnvironment = defaultEnvironment;
+    public YamlModel(String testedBrowser, String testedDataSet, HashMap<String, TestDataModel> testData) {
+        this.testedBrowser = testedBrowser;
+        this.testedDataSet = testedDataSet;
         this.testData = testData;
-
     }
 
     public HashMap<String, TestDataModel> getTestData() {
         return testData;
-    }
-
-    @Override
-    public String toString() {
-        return "YamlModel{" +
-                "defaultBrowser='" + defaultBrowser + '\'' +
-                ", defaultEnvironment='" + defaultEnvironment + '\'' +
-                ", testData=" + testData +
-                '}';
     }
 }

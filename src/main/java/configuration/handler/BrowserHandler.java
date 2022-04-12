@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 public class BrowserHandler {
 
-    private static final Logger log = LoggerFactory.getLogger("BrowserModel.class");
+    private static final Logger log = LoggerFactory.getLogger("BrowserHandler.class");
     private final String appUrl;
 
     public BrowserHandler(String appUrl) {

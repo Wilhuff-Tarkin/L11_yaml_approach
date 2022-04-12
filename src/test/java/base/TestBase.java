@@ -14,19 +14,16 @@ import org.slf4j.LoggerFactory;
 public class TestBase {
 
     protected static WebDriver driver;
-    private static Logger log = LoggerFactory.getLogger("TestBase.class");
+    private static final Logger log = LoggerFactory.getLogger("TestBase.class");
     public static TestDataModel testEnvironment;
-
 
     @BeforeAll
     static void beforeAll() {
-
-        YamlReader yr = new YamlReader();
-        YamlModel model = yr.reader();
-        log.info(">>>> Configuration loaded. "  + "Browser: " + model.getDefaultBrowser() + " Data set: " + model.getDefaultEnvironment());
-        testEnvironment = model.getTestData().get(model.getDefaultEnvironment());
+        YamlModel model = new YamlReader().loadData();
+        log.info(">>>> Configuration loaded. "  + "Browser: " + model.getTestedBrowser() + " Data set: " + model.getTestedDataSet());
+        testEnvironment = model.getTestData().get(model.getTestedDataSet());
         BrowserHandler browser = new BrowserHandler(testEnvironment.getAppUrl());
-        driver = browser.getDriver(model.getDefaultBrowser());
+        driver = browser.getDriver(model.getTestedBrowser());
     }
 
     @AfterAll
