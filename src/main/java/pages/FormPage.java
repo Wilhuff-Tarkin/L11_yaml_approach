@@ -106,8 +106,8 @@ public class FormPage {
         return this;
     }
 
-    public FormPage sendFile() {
-        File file = new File("src/main/resources/file.txt");
+    public FormPage sendFile(String path) {
+        File file = new File(path);
         chooseFile.sendKeys(file.getAbsolutePath());
         return this;
     }

@@ -9,7 +9,8 @@ import pages.FormPage;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-public class FormPopTest extends TestBase {
+
+public class  FormPopTest extends TestBase {
 
     private static Logger log = LoggerFactory.getLogger("FormPopTest.class");
 
@@ -17,18 +18,19 @@ public class FormPopTest extends TestBase {
     public void shouldFIllFormWithSuccess() {
         FormPage formPage = new FormPage(driver);
 
-        formPage.setFirstName(System.getProperty("firstName"))
-                .setLastName(System.getProperty("lastName"))
-                .setEmail(System.getProperty("email"))
+        formPage.setFirstName(testEnvironment.getFirstName())
+                .setLastName(testEnvironment.getLastName())
+                .setEmail(testEnvironment.getEmail())
                 .selectRandomSex()
-                .setAge(Integer.parseInt(System.getProperty("age")))
+                .setAge(testEnvironment.getAge())
                 .selectRandomExperience()
                 .setProfession()
                 .setRandomContinent()
                 .setCommands(driver)
-                .sendFile()
-                .fillAdditionalInfo(System.getProperty("additional"))
+                .sendFile(testEnvironment.filePath())
+                .fillAdditionalInfo(testEnvironment.getAdditional())
                 .signIn();
-        assertThat(formPage.getActualMessage(), equalTo(System.getProperty("message")));
+        log.info("Data sent. Checking response message.");
+        assertThat(formPage.getActualMessage(), equalTo(testEnvironment.getMessage()));
     }
 }
