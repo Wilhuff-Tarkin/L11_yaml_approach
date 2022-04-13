@@ -1,7 +1,6 @@
 package test;
 
 import base.TestBase;
-import configuration.model.EnvironmentModel;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,19 +18,19 @@ public class  FormPopTest extends TestBase {
     public void shouldFIllFormWithSuccess() {
         FormPage formPage = new FormPage(driver);
 
-        formPage.setFirstName(testEnvironment.returnStringValue("firstName"))
-                .setLastName(testEnvironment.returnStringValue("lastName"))
-                .setEmail(testEnvironment.returnStringValue("email"))
+        formPage.setFirstName(testEnvironment.returnValueAsString("firstName"))
+                .setLastName(testEnvironment.returnValueAsString("lastName"))
+                .setEmail(testEnvironment.returnValueAsString("email"))
                 .selectRandomSex()
-                .setAge(testEnvironment.returnStringValue("age"))
+                .setAge(testEnvironment.returnValueAsString("age"))
                 .selectRandomExperience()
                 .setProfession()
                 .setRandomContinent()
                 .setCommands(driver)
-                .sendFile(testEnvironment.returnStringValue("filepath"))
-                .fillAdditionalInfo(testEnvironment.returnStringValue("additional"))
+                .sendFile(testEnvironment.returnValueAsString("filepath"))
+                .fillAdditionalInfo(testEnvironment.returnValueAsString("additional"))
                 .signIn();
         log.info("Data sent. Checking response message.");
-        assertThat(formPage.getActualMessage(), equalTo(testEnvironment.returnStringValue("message")));
+        assertThat(formPage.getActualMessage(), equalTo(testEnvironment.returnValueAsString("message")));
     }
 }

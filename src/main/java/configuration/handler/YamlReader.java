@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class YamlReader {
-
     public static YamlModel model;
 
     public YamlModel loadData() {

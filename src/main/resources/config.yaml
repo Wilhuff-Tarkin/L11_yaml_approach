@@ -2,7 +2,7 @@
 #testdata options: test1, test2, test3, default
 
 testedBrowser: chrome
-testedDataSet: test3
+testedDataSet: test1
 
 testData:
   test1:
@@ -37,6 +37,6 @@ testData:
     additional: 1234 1234
     message: Form send with success
     filepath: src/main/resources/file.txt
-    new: bob
+
 
 ---

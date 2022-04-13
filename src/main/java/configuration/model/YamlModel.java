@@ -38,7 +38,7 @@ public class YamlModel {
     }
 
     public HashMap<String, Object> getSpecificTestData(String testSetName) {
-        return testData.get(testSetName).getMapOfProperties();
+        return testData.get(testSetName).getTestPropertiesMap();
     }
 
 }

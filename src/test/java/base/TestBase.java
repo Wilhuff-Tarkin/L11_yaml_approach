@@ -28,7 +28,6 @@ public class TestBase {
         initializeTestEnvironment();
         logBasicLoadInformation();
         logDetailedLoadInformation();
-
     }
 
     private static void initializeTestEnvironment() {
@@ -36,23 +35,22 @@ public class TestBase {
         loadedEnvironmentName = model.getTestedDataSet();
         loadedBrowser = model.getTestedBrowser();
         testEnvironment = new EnvironmentModel(model.getSpecificTestData(loadedEnvironmentName));
-
     }
 
     private static void logDetailedLoadInformation() {
         log.info("Tests will proceed using following data:");
-        testEnvironment.getMapOfProperties().forEach((k, v) -> log.info("--> " + k + ": " + v));
+        testEnvironment.getTestPropertiesMap().forEach((k, v) -> log.info("--> " + k + ": " + v));
     }
 
     private static void logBasicLoadInformation() {
         log.info(">>>> Parsed " + model.getAllTestData().size() + " sets of environment settings");
         log.info(">>>> Configuration loaded successfully. " + "Performing test on browser: " + loadedBrowser.toUpperCase(Locale.ROOT) + " using environment: " + loadedEnvironmentName.toUpperCase(Locale.ROOT));
-        log.info(">>>> Environment " + loadedEnvironmentName.toUpperCase(Locale.ROOT) + " contains " + testEnvironment.getMapOfProperties().size() + " properties");
+        log.info(">>>> Environment " + loadedEnvironmentName.toUpperCase(Locale.ROOT) + " contains " + testEnvironment.getTestPropertiesMap().size() + " properties");
     }
 
     @BeforeEach
     void setUp() {
-        BrowserHandler browser = new BrowserHandler(testEnvironment.returnStringValue("appUrl"));
+        BrowserHandler browser = new BrowserHandler(testEnvironment.returnValueAsString("appUrl"));
         driver = browser.getDriver(model.getTestedBrowser());
     }
 
