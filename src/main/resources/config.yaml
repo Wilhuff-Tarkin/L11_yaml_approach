@@ -2,7 +2,7 @@
 #testdata options: test1, test2, test3, default
 
 testedBrowser: chrome
-testedDataSet: test1
+testedDataSet: test3
 
 testData:
   test1:

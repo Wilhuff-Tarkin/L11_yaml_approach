@@ -17,7 +17,7 @@ public class YamlModel {
     @Getter
     @Setter
     @JsonProperty
-    private String testedDataSet = "default";
+    private String testedDataSet;
 
     @Setter
     @JsonAnyGetter
@@ -35,6 +35,10 @@ public class YamlModel {
 
     public HashMap<String, EnvironmentModel> getAllTestData() {
         return testData;
+    }
+
+    public HashMap<String, Object> getSpecificTestData(String testSetName) {
+        return testData.get(testSetName).getMapOfProperties();
     }
 
 }

@@ -43,7 +43,7 @@ public class BrowserHandler {
                 driver = new InternetExplorerDriver(defaultOptions);
                 driver.get(appUrl);
         }
-        log.info("Driver started. Browser: " + requiredBrowser);
+        log.info(">>>> Driver started. Browser: " + requiredBrowser);
         return driver;
     }
 }

@@ -81,9 +81,9 @@ public class FormPage {
         return this;
     }
 
-    public FormPage setAge(int age) {
+    public FormPage setAge(String age) {
         this.age.clear();
-        this.age.sendKeys(String.valueOf(age));
+        this.age.sendKeys(age);
         return this;
     }
 
