@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashMap;
+import java.util.*;
 
 public class YamlModel {
 
@@ -20,20 +20,21 @@ public class YamlModel {
     private String testedDataSet = "default";
 
     @Setter
-    @JsonProperty
     @JsonAnyGetter
-    private HashMap<String, TestDataModel> testData;
+    private HashMap<String, EnvironmentModel> testData;
+
 
     public YamlModel() {
     }
 
-    public YamlModel(String testedBrowser, String testedDataSet, HashMap<String, TestDataModel> testData) {
+    public YamlModel(String testedBrowser, String testedDataSet, HashMap<String, EnvironmentModel> testData) {
         this.testedBrowser = testedBrowser;
         this.testedDataSet = testedDataSet;
         this.testData = testData;
     }
 
-    public HashMap<String, TestDataModel> getTestData() {
+    public HashMap<String, EnvironmentModel> getAllTestData() {
         return testData;
     }
+
 }

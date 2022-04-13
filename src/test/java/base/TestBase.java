@@ -1,9 +1,9 @@
 package base;
 
+import configuration.model.EnvironmentModel;
+import configuration.model.PropertyModel;
 import configuration.model.YamlModel;
 import configuration.handler.YamlReader;
-import configuration.handler.BrowserHandler;
-import configuration.model.TestDataModel;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;
@@ -15,15 +15,28 @@ public class TestBase {
 
     protected static WebDriver driver;
     private static final Logger log = LoggerFactory.getLogger("TestBase.class");
-    public static TestDataModel testEnvironment;
+    public static EnvironmentModel testEnvironment;
+    static String loadedEnvironmentName;
+    static String loadedBrowser;
+    static YamlModel model;
 
     @BeforeAll
     static void beforeAll() {
-        YamlModel model = new YamlReader().loadData();
-        log.info(">>>> Configuration loaded. "  + "Browser: " + model.getTestedBrowser() + " Data set: " + model.getTestedDataSet());
-        testEnvironment = model.getTestData().get(model.getTestedDataSet());
-        BrowserHandler browser = new BrowserHandler(testEnvironment.getAppUrl());
-        driver = browser.getDriver(model.getTestedBrowser());
+        model = new YamlReader().loadData();
+        logLoadedData();
+        testEnvironment = model.getAllTestData().get(loadedEnvironmentName);
+        System.out.println(testEnvironment.toString());
+//        BrowserHandler browser = new BrowserHandler(testEnvironment.getAppUrl());
+//        driver = browser.getDriver(model.getTestedBrowser());
+    }
+
+    private static void logLoadedData() {
+        loadedEnvironmentName = model.getTestedDataSet();
+        loadedBrowser = model.getTestedBrowser();
+        log.info(">>>> Configuration loaded. "  + "Browser: " + loadedBrowser + " Data set: " + loadedEnvironmentName);
+
+
+
     }
 
     @AfterAll
