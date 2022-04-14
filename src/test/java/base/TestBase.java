@@ -19,7 +19,7 @@ public class TestBase {
     private static String loadedEnvironmentName;
     private static String loadedBrowser;
     private static YamlModel model;
-    public WebDriver driver;
+    protected WebDriver driver;
 
     @BeforeAll
     static void beforeAll() {
