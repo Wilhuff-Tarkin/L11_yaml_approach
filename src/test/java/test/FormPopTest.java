@@ -9,9 +9,7 @@ import pages.FormPage;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-
 public class  FormPopTest extends TestBase {
-
     private static final Logger log = LoggerFactory.getLogger("FormPopTest.class");
 
     @Test

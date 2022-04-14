@@ -30,10 +30,8 @@ public class EnvironmentModel {
         if (testPropertiesMap.containsKey(key)) {
             return testPropertiesMap.get(key).toString();
         } else {
-            log.error("No property stored under this key in current test environment.");
-            return "NO VALUE UNDER SUCH KEY";
-            //todo looks sus
-            //todo przeniesc do handlera?
+            log.error("No property stored under >>" + key + "<< key in current test environment.");
+            return null;
         }
     }
 }

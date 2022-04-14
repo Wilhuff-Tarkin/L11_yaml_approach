@@ -12,7 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.Locale;
 
-
 public class TestBase {
 
     private static final Logger log = LoggerFactory.getLogger("TestBase.class");
@@ -21,7 +20,6 @@ public class TestBase {
     private static String loadedBrowser;
     private static YamlModel model;
     public WebDriver driver;
-
 
     @BeforeAll
     static void beforeAll() {
@@ -61,12 +59,5 @@ public class TestBase {
         log.info(">>>>>  Driver closed successfully.");
     }
 
-    public WebDriver getDriver() {
-        return driver;
-    }
-
-    public static EnvironmentModel getTestEnvironment() {
-        return testEnvironment;
-    }
 }
 
