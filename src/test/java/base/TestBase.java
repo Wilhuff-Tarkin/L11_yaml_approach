@@ -23,7 +23,7 @@ public class TestBase {
     protected static EnvironmentModel testEnvironment;
     private static String loadedEnvironmentName;
     private static Browser loadedBrowser;
-    private static YamlModel model;
+    protected static YamlModel model;
     protected WebDriver driver;
 
     @BeforeAll
@@ -47,7 +47,7 @@ public class TestBase {
 
     private static void logBasicLoadInformation() {
         log.info(">>>> Parsed " + model.getAllTestData().size() + " sets of environment settings");
-        log.info(">>>> Configuration loaded successfully. " + "Performing test on browser: " + loadedBrowser.name() + " using environment: " + loadedEnvironmentName.toUpperCase(Locale.ROOT));
+        log.info(">>>> Configuration loaded successfully. " + "Performing test on browser: " + loadedBrowser.name().toUpperCase(Locale.ROOT) + " using environment: " + loadedEnvironmentName.toUpperCase(Locale.ROOT));
         log.info(">>>> Environment " + loadedEnvironmentName.toUpperCase(Locale.ROOT) + " contains " + testEnvironment.getTestPropertiesMap().size() + " properties");
     }
 

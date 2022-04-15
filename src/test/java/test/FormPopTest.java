@@ -24,7 +24,7 @@ public class  FormPopTest extends TestBase {
                 .selectRandomExperience()
                 .setProfession()
                 .setRandomContinent()
-                .setCommands(driver)
+                .setCommands(driver, model.getTestedBrowser())
                 .sendFile(getFromEnv("filepath"))
                 .fillAdditionalInfo(getFromEnv("additional"))
                 .signIn();

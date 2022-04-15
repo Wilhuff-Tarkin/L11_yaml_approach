@@ -1,5 +1,6 @@
 package pages;
 
+import configuration.handler.Browser;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -131,10 +132,15 @@ public class FormPage {
         return this;
     }
 
-    public FormPage setCommands(WebDriver driver) {
-        Actions actionProvider = new Actions(driver);
-        Action selectWithCtrl = actionProvider.keyDown(Keys.CONTROL).click(seleniumCommands1).click(seleniumCommands2).build();
-        selectWithCtrl.perform();
+    public FormPage setCommands(WebDriver driver, Browser testedBrowser) {
+
+        if (!testedBrowser.name().equals("FIREFOX")) {
+            Actions actionProvider = new Actions(driver);
+            Action selectWithCtrl = actionProvider.keyDown(Keys.CONTROL).click(seleniumCommands1).click(seleniumCommands2).build();
+            selectWithCtrl.perform();
+        } else {
+            seleniumCommands1.click();
+        }
         return this;
     }
 
