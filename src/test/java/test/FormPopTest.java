@@ -32,8 +32,4 @@ public class  FormPopTest extends TestBase {
         log.info("Data sent. Checking response message.");
         assertThat(formPage.getActualMessage(), equalTo(getFromEnv("message")));
     }
-
-    private String getFromEnv (String key){
-        return testEnvironment.returnValueAsString(key);
-    }
 }

@@ -66,5 +66,10 @@ public class TestBase {
         driver.quit();
         log.info(">>>>>  Driver closed successfully.");
     }
+
+    protected String getFromEnv(String key){
+        return testEnvironment.returnValueAsString(key);
+    }
+
 }
 
