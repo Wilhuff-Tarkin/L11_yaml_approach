@@ -1,6 +1,5 @@
 package pages;
 
-import configuration.model.EnvironmentModel;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -16,7 +15,6 @@ import java.util.Random;
 public class FormPage {
 
     private static final Logger log = LoggerFactory.getLogger(FormPage.class);
-
 
     @FindBy(id = "inputFirstName3")
     private WebElement firstName;
@@ -77,7 +75,6 @@ public class FormPage {
         this.lastName.sendKeys(lastName);
         return this;
     }
-
 
     public FormPage setEmail(String email) {
         this.email.sendKeys(email);

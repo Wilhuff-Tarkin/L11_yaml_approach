@@ -2,6 +2,7 @@ package configuration.model;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import configuration.handler.Browser;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +13,7 @@ public class YamlModel {
     @Getter
     @Setter
     @JsonProperty
-    private String testedBrowser;
+    private Browser testedBrowser;
 
     @Getter
     @Setter
@@ -27,7 +28,7 @@ public class YamlModel {
     public YamlModel() {
     }
 
-    public YamlModel(String testedBrowser, String testedDataSet, HashMap<String, EnvironmentModel> testData) {
+    public YamlModel(Browser testedBrowser, String testedDataSet, HashMap<String, EnvironmentModel> testData) {
         this.testedBrowser = testedBrowser;
         this.testedDataSet = testedDataSet;
         this.testData = testData;

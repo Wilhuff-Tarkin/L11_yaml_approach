@@ -13,22 +13,27 @@ public class  FormPopTest extends TestBase {
     private static final Logger log = LoggerFactory.getLogger("FormPopTest.class");
 
     @Test
-    public void shouldFIllFormWithSuccess() {
+    public void shouldFIllFormWithSuccess() throws InterruptedException {
         FormPage formPage = new FormPage(driver);
 
-        formPage.setFirstName(testEnvironment.returnValueAsString("firstName"))
-                .setLastName(testEnvironment.returnValueAsString("lastName"))
-                .setEmail(testEnvironment.returnValueAsString("email"))
+        formPage.setFirstName(getFromEnv("firstName"))
+                .setLastName(getFromEnv("lastName"))
+                .setEmail(getFromEnv("email"))
                 .selectRandomSex()
-                .setAge(testEnvironment.returnValueAsString("age"))
+                .setAge(getFromEnv("age"))
                 .selectRandomExperience()
                 .setProfession()
                 .setRandomContinent()
                 .setCommands(driver)
-                .sendFile(testEnvironment.returnValueAsString("filepath"))
-                .fillAdditionalInfo(testEnvironment.returnValueAsString("additional"))
+                .sendFile(getFromEnv("filepath"))
+                .fillAdditionalInfo(getFromEnv("additional"))
                 .signIn();
+        Thread.sleep(1000);
         log.info("Data sent. Checking response message.");
-        assertThat(formPage.getActualMessage(), equalTo(testEnvironment.returnValueAsString("message")));
+        assertThat(formPage.getActualMessage(), equalTo(getFromEnv("message")));
+    }
+
+    private String getFromEnv (String key){
+        return testEnvironment.returnValueAsString(key);
     }
 }

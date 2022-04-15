@@ -1,13 +1,14 @@
 package configuration.handler;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,30 +21,54 @@ public class BrowserHandler {
         this.appUrl = appUrl;
     }
 
-    public WebDriver getDriver(String requiredBrowser) {
+    public WebDriver getDriver(Browser browser) {
         WebDriver driver;
-        switch (requiredBrowser) {
-            case "chrome":
-                ChromeOptions optionsChrome = new ChromeOptions();
-                WebDriverManager.chromedriver().setup();
-                optionsChrome.addArguments("start-maximized");
-                driver = new ChromeDriver(optionsChrome);
-                driver.get(appUrl);
+        switch (browser) {
+            case CHROME:
+                driver = getChrome();
                 break;
-            case "firefox":
-                FirefoxOptions optionsFirefox = new FirefoxOptions();
-                WebDriverManager.firefoxdriver().setup();
-                optionsFirefox.addArguments("start-maximized");
-                driver = new FirefoxDriver(optionsFirefox);
-                driver.get(appUrl);
+            case FIREFOX:
+                driver = getFirefox();
+                break;
+            case EDGE:
+                driver = getEdge();
                 break;
             default:
-                InternetExplorerOptions defaultOptions = new InternetExplorerOptions();
-                WebDriverManager.iedriver().setup();
-                driver = new InternetExplorerDriver(defaultOptions);
-                driver.get(appUrl);
+                driver = getIe();
+                break;
         }
-        log.info(">>>> Driver started. Browser: " + requiredBrowser);
+        log.info(">>>> Driver started. Browser: " + browser.name());
+        driver.get(appUrl);
         return driver;
+    }
+
+    private WebDriver getIe() {
+        WebDriverManager.iedriver().setup();
+        return new InternetExplorerDriver();
+    }
+
+    private WebDriver getEdge() {
+        EdgeOptions optionsEdge = new EdgeOptions();
+        WebDriverManager.edgedriver().setup();
+        optionsEdge.addArguments("start-maximized");
+        return new EdgeDriver(optionsEdge);
+    }
+
+    private WebDriver getFirefox() {
+        WebDriverManager.firefoxdriver().setup();
+        return new FirefoxDriver();
+    }
+
+    private WebDriver getChrome() {
+        ChromeOptions optionsChrome = new ChromeOptions();
+        WebDriverManager.chromedriver().setup();
+        optionsChrome.addArguments("start-maximized");
+        return new ChromeDriver(optionsChrome);
+    }
+
+    public void setZoom(WebDriver driver) {
+        driver.manage().window().maximize();
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("document.body.style.zoom='100%'");
     }
 }

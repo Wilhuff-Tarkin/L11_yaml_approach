@@ -1,5 +1,6 @@
 package base;
 
+import configuration.handler.Browser;
 import configuration.handler.BrowserHandler;
 import configuration.handler.YamlReader;
 import configuration.model.EnvironmentModel;
@@ -7,9 +8,13 @@ import configuration.model.YamlModel;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.time.Duration;
 import java.util.Locale;
 
 public class TestBase {
@@ -17,7 +22,7 @@ public class TestBase {
     private static final Logger log = LoggerFactory.getLogger("TestBase.class");
     protected static EnvironmentModel testEnvironment;
     private static String loadedEnvironmentName;
-    private static String loadedBrowser;
+    private static Browser loadedBrowser;
     private static YamlModel model;
     protected WebDriver driver;
 
@@ -30,8 +35,8 @@ public class TestBase {
 
     private static void initializeTestEnvironment() {
         model = new YamlReader().loadData();
-        loadedEnvironmentName = model.getTestedDataSet();
         loadedBrowser = model.getTestedBrowser();
+        loadedEnvironmentName = model.getTestedDataSet();
         testEnvironment = new EnvironmentModel(model.getSpecificTestData(loadedEnvironmentName));
     }
 
@@ -42,7 +47,7 @@ public class TestBase {
 
     private static void logBasicLoadInformation() {
         log.info(">>>> Parsed " + model.getAllTestData().size() + " sets of environment settings");
-        log.info(">>>> Configuration loaded successfully. " + "Performing test on browser: " + loadedBrowser.toUpperCase(Locale.ROOT) + " using environment: " + loadedEnvironmentName.toUpperCase(Locale.ROOT));
+        log.info(">>>> Configuration loaded successfully. " + "Performing test on browser: " + loadedBrowser.name() + " using environment: " + loadedEnvironmentName.toUpperCase(Locale.ROOT));
         log.info(">>>> Environment " + loadedEnvironmentName.toUpperCase(Locale.ROOT) + " contains " + testEnvironment.getTestPropertiesMap().size() + " properties");
     }
 
@@ -50,6 +55,9 @@ public class TestBase {
     void setUp() {
         BrowserHandler browser = new BrowserHandler(testEnvironment.returnValueAsString("appUrl"));
         driver = browser.getDriver(model.getTestedBrowser());
+        browser.setZoom(driver);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
     }
 
     @AfterEach
@@ -58,6 +66,5 @@ public class TestBase {
         driver.quit();
         log.info(">>>>>  Driver closed successfully.");
     }
-
 }
 

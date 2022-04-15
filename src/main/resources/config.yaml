@@ -1,8 +1,8 @@
-#browser options: chrome , firefox
-#testdata options: test1, test2, test3, default
+#currently supported browsers: CHROME, EDGE
+#testdata options: test1, test2, test3
 
-testedBrowser: chrome
-testedDataSet: test1
+testedBrowser: CHROME
+testedDataSet: test2
 
 testData:
   test1:
