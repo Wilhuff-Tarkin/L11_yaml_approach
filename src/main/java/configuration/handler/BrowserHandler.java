@@ -33,8 +33,11 @@ public class BrowserHandler {
             case EDGE:
                 driver = getEdge();
                 break;
-            default:
+            case IE:
                 driver = getIe();
+                break;
+            default:
+                driver = getChrome();
                 break;
         }
         log.info(">>>> Driver started. Browser: " + browser.name());

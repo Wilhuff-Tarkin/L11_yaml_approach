@@ -1,4 +1,4 @@
-#currently supported browsers: CHROME, EDGE
+#currently supported browsers: CHROME, EDGE, FIREFOX
 #testdata options: test1, test2, test3
 
 testedBrowser: CHROME
